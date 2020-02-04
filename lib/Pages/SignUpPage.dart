@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purduehcr_web/CreateAccount.dart';
 
 
 class SignUpPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Sign UP Page"),
+        child: CreateAccount(),
       ),
     );
   }

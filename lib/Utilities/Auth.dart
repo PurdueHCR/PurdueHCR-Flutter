@@ -24,7 +24,11 @@ class Auth{
   ///Given an email and password, attempt to create an account
   Future<FirebaseUser> signUp(String email, String password) async {
     /// TODO: look at https://pub.dev/packages/firebase_auth to learn how to implement
-    return null;
+    _auth.createUserWithEmailAndPassword(email: email, password: password).then((user) {
+      return user.user;
+    }).catchError((err)=> {
+      throw(err.toString())
+    });
   }
 
   ///Returns true if the user is logged in with FirebaseAuth and false if the user is not
