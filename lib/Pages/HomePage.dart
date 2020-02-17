@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
     Navigator.pushNamed(context, '/join');
   }
 
+
   @override
   Widget build(BuildContext context) {
     if(!Auth.instance.isUserLoggedIn()){

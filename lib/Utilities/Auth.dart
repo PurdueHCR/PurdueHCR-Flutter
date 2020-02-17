@@ -31,4 +31,5 @@ class Auth{
   bool isUserLoggedIn(){
     return _auth.currentUser() != null;
   }
+
 }

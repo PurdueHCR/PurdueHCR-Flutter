@@ -5,6 +5,8 @@ import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
 
 
 class LogInPage extends StatelessWidget {
+
+
   const LogInPage({Key key}) : super(key: key);
 
 
