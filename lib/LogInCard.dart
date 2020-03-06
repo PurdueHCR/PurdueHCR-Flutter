@@ -2,6 +2,7 @@ import 'package:firebase/firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:purduehcr_web/Pages/HomePage.dart';
 import 'package:purduehcr_web/Utilities/Auth.dart';
 
 class LogInCard extends StatefulWidget{
@@ -29,7 +30,8 @@ class LogInCardState extends State<LogInCard>{
     FirebaseAuth.instance.signInWithEmailAndPassword(email:email, password: password).then((user){
       print("Complete");
       if(user != null){
-          Navigator.pushNamed(context, '/join');
+        print("Success log in");
+        Navigator.of(context).pushReplacementNamed('/');
       }else{
         print("Could not sign in");
       }

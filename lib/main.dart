@@ -26,11 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          // When navigating to the "/" route, build the FirstScreen widget.
           '/': (context) => HomePage(),
-          '/login':(context) => LogInPage(),
-          '/signup': (context) => SignUpPage(),
-          '/join': (context) => JoinHousePage(),
           '/token': (context) => TokenTestPage(),
         },
     );
