@@ -4,6 +4,7 @@ import 'package:purduehcr_web/ListDrawer.dart';
 import 'package:purduehcr_web/Pages/LogInPage.dart';
 import 'package:purduehcr_web/DisplayTypeUtil.dart';
 import 'package:purduehcr_web/ProfileFragment.dart';
+import 'package:purduehcr_web/Utilities/APIUtility.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -39,6 +40,7 @@ class HomePageState extends State<HomePage> {
           new MaterialPageRoute(builder: (context) => new LogInPage())
       );
     });
+
   }
   
   void launchLoginPage(){
@@ -56,7 +58,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Start Build");
     final bool isDesktop = isDisplayDesktop(context);
 
     final body = ProfileFragment();

@@ -2,8 +2,7 @@ import 'package:firebase/firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/Pages/HomePage.dart';
-import 'package:purduehcr_web/Utilities/Auth.dart';
+import 'package:purduehcr_web/User.dart' as PHCRUser;
 
 class LogInCard extends StatefulWidget{
 
@@ -31,6 +30,20 @@ class LogInCardState extends State<LogInCard>{
       print("Complete");
       if(user != null){
         print("Success log in");
+        FirebaseAuth.instance.currentUser().then((user){
+          user.getIdToken().then((value) {
+            print("GOt token: "+value.token);
+            PHCRUser.User.user.firebaseToken = value.token;
+          })
+          .catchError((err){
+            FirebaseAuth.instance.signOut();
+            print("FAILED TO GET ID TOKEN. SO LOGGED OUT");
+          });
+
+        }).catchError((err){
+          FirebaseAuth.instance.signOut();
+          print("FAILED TO GET CURRENT USER. SO LOGGED OUT");
+        });
         Navigator.of(context).pushReplacementNamed('/');
       }else{
         print("Could not sign in");
