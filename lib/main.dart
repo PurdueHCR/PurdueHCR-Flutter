@@ -3,6 +3,7 @@ import 'package:purduehcr_web/Pages/HomePage.dart';
 import 'package:purduehcr_web/Pages/JoinHousePage.dart';
 import 'package:purduehcr_web/Pages/LogInPage.dart';
 import 'package:purduehcr_web/Pages/SignUpPage.dart';
+import 'package:purduehcr_web/Pages/SubmitPointsPage.dart';
 import 'package:firebase/firebase.dart' as fb;
 import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           '/login':(context) => LogInPage(),
           '/signup': (context) => SignUpPage(),
           '/join': (context) => JoinHousePage(),
+          '/submitpoints': (context) => SubmitPointsPage(),
         },
     );
   }
