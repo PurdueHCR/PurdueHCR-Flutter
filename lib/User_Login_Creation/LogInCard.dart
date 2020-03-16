@@ -2,7 +2,8 @@ import 'package:firebase/firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/User.dart' as PHCRUser;
+import 'package:purduehcr_web/User_Login_Creation/CreateAccountPage.dart';
+import 'package:purduehcr_web/Models/User.dart' as PHCRUser;
 
 class LogInCard extends StatefulWidget{
 
@@ -23,6 +24,12 @@ class LogInCardState extends State<LogInCard>{
 
   TextEditingController emailController = TextEditingController();
   TextEditingController pswdController = TextEditingController();
+
+  void navigateToCreateAccountCard(){
+    Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(builder: (context) => new CreateAccountPage())
+    );
+  }
 
   Future<void> logIn(BuildContext context, String email, String password) async {
 
@@ -108,7 +115,7 @@ class LogInCardState extends State<LogInCard>{
                       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RaisedButton(
                         onPressed: (){
-                          Navigator.pushNamed(context, "/signup");
+                          navigateToCreateAccountCard();
                         },
                         child: Text("Create an account"),
                       ),

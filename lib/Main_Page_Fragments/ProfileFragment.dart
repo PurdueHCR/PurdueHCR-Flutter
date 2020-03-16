@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/User.dart' as PHCRUser;
+import 'package:purduehcr_web/Models/User.dart' as PHCRUser;
 import 'package:purduehcr_web/Utilities/APIUtility.dart';
 
 

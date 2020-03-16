@@ -2,7 +2,7 @@ import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:purduehcr_web/Pages/LogInPage.dart';
+import 'package:purduehcr_web/User_Login_Creation/LogInPage.dart';
 
 
 class TokenTestPage extends StatefulWidget {
@@ -19,6 +19,7 @@ class TokenTestPage extends StatefulWidget {
 class TokenTestPageState extends State<TokenTestPage> {
 
   String token = "";
+
   void getToken() async{
     FirebaseAuth.instance.currentUser().then((user){
       user.getIdToken().then((value) {

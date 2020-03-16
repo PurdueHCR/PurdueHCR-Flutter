@@ -1,11 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/Pages/HomePage.dart';
-import 'package:purduehcr_web/Pages/JoinHousePage.dart';
-import 'package:purduehcr_web/Pages/LogInPage.dart';
-import 'package:purduehcr_web/Pages/SignUpPage.dart';
-import 'package:firebase/firebase.dart' as fb;
-import 'package:purduehcr_web/Pages/TokenTestPage.dart';
+import 'package:purduehcr_web/HomePage.dart';
+import 'package:purduehcr_web/Utility_Views/TokenTestPage.dart';
 import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
 
 

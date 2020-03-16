@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/LogInCard.dart';
-import 'package:purduehcr_web/Pages/HomePage.dart';
-import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
+import 'package:purduehcr_web/User_Login_Creation/LogInCard.dart';
 
 
 
@@ -25,6 +23,9 @@ class LogInPageState extends State<LogInPage> {
     super.initState();
     FirebaseAuth.instance.currentUser().then((value){
       if(value != null){
+        print("HERE 1");
+        print("Found user so we are moving to home page: "+value.email);
+        print("HERE 2");
         Navigator.of(context).pushReplacementNamed('/');
         print("Moving to Home Page");
       }

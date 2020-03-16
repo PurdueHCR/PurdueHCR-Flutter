@@ -1,6 +1,6 @@
 
-import 'package:purduehcr_web/HTTPError.dart';
-import 'package:purduehcr_web/User.dart' as PHCRUser;
+import 'package:purduehcr_web/Models/HTTPError.dart';
+import 'package:purduehcr_web/Models/User.dart' as PHCRUser;
 import 'package:purduehcr_web/Utilities/HttpUtility.dart';
 
 class APIUtility {

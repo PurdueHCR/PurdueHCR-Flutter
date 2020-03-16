@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:purduehcr_web/HTTPError.dart';
+import 'package:purduehcr_web/Models/HTTPError.dart';
 
-import '../User.dart';
+import '../Models/User.dart';
 
 class Network {
 
