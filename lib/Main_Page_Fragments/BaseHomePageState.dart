@@ -8,13 +8,19 @@ import 'package:purduehcr_web/User_Login_Creation/LogInPage.dart';
 import 'package:purduehcr_web/Utilities/APIUtility.dart';
 import 'package:purduehcr_web/Utilities/DisplayTypeUtil.dart';
 
-abstract class HomePageState extends State<HomePage> {
+abstract class BaseHomePageState extends State<HomePage> {
   PHCRUser.User user;
   int _selectedIndex;
 
-  HomePageState() : super(){
+  BaseHomePageState() : super(){
     updateUser();
   }
+
+  /// Returns list of Tiles that are to be put on the side drawer
+  List<DrawerOption> getDrawerOptions();
+
+  /// Return the body fragment for the [selectedIndex] from the drawer list
+  Widget getBodyForIndex(int selectedIndex);
 
   /// Get the user information from the API assuming the user is logged in
   void updateUser() async {
@@ -27,14 +33,7 @@ abstract class HomePageState extends State<HomePage> {
       print("Err on getUser(): "+err.toString());
       throw(err);
     });
-
   }
-
-  /// Returns list of Tiles that are to be put on the side drawer
-  List<DrawerOption> getDrawerOptions();
-
-  /// Return the body fragment for the [selectedIndex] from the drawer list
-  Widget getBodyForIndex(int selectedIndex);
 
   @override
   Widget build(BuildContext context) {

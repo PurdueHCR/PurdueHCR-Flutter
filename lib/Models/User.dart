@@ -1,4 +1,6 @@
 
+import 'package:purduehcr_web/Models/UserPermissionLevel.dart';
+
 class User {
 
   static const String FIRST_NAME = "FirstName";
@@ -20,6 +22,7 @@ class User {
   String house = "";
   num lastSemesterPoints = -1;
   num totalPoints = -1;
+  UserPermissionLevel permissionLevel = UserPermissionLevel.RESIDENT;
   String id = "";
   num houseRank = -1;
   num semesterRank = -1;
@@ -34,6 +37,7 @@ class User {
     house = data[HOUSE];
     lastSemesterPoints = data[LAST_SEMESTER_POINTS];
     totalPoints = data[TOTAL_POINTS];
+    permissionLevel = UserPermissionLevelConverter.fromNum(data[PERMISSION_LEVEL]);
   }
 
   void setHouseRankingsFromJson(Map<String, dynamic> data){
