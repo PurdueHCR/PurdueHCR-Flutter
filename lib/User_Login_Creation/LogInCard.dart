@@ -6,10 +6,12 @@ import 'package:purduehcr_web/HomePage.dart';
 import 'package:purduehcr_web/User_Login_Creation/CreateAccountPage.dart';
 import 'package:purduehcr_web/Models/User.dart' as PHCRUser;
 import 'package:purduehcr_web/Utilities/APIUtility.dart';
+import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
 
 class LogInCard extends StatefulWidget{
 
-  LogInCard({Key key}) : super(key: key);
+  bool token;
+  LogInCard({Key key, this.token}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -37,11 +39,20 @@ class LogInCardState extends State<LogInCard>{
   }
 
   void navigateToHomePage(){
-    Navigator.of(context).pushReplacement(
-        new MaterialPageRoute(builder: (context) => new HomePage())
-    );
+    Navigator.of(context).pop();
+//    if(widget.token != null && widget.token){
+//      print("Go to token");
+//      Navigator.of(context).pushNamed("/token");
+//    }
+//    else{
+//      print("Navigate to home page please");
+//      Navigator.of(context).pushReplacement(
+//          new MaterialPageRoute(builder: (context) => new HomePage())
+//      );
+//    }
   }
 
+  ///
   Future<dynamic> handleLogIn(String email, String password) {
     if(email.isEmpty || password.isEmpty){
       print("Needs log in info");
@@ -57,84 +68,55 @@ class LogInCardState extends State<LogInCard>{
     }
     else{
       print("Loggin in");
-      return FirebaseAuth.instance.signInWithEmailAndPassword(email:email, password: password).then((user) {
-        if(user != null){
-          print("Success log in");
-          return _getToken(user);
-        }
-        else{
-          print("Could not sign in");
+      return FirebaseUtility.signIn(context, email, password).then((_){
+        return APIUtility.getUser().then((value){
+          print("GOT USER: "+value.toString());
           Future.delayed(Duration(seconds: 2), (){
-            setState(() {
-              _loginButtonState = 0;
-            });
+            navigateToHomePage();
           });
-          setState(() {
-            errorMessage = "Could not sign in.";
-          });
-          return Future.error("Could not Sign in");
-        }
+          return Future.value(value);
+        });
       }).catchError((error){
         Future.delayed(Duration(seconds: 2), (){
           setState(() {
             _loginButtonState = 0;
           });
         });
-        setState(() {
-          switch (error.code) {
-            case "auth/invalid-email":
-              errorMessage = "Your email address appears to be malformed.";
-              break;
-            case "auth/wrong-password":
-              errorMessage = "Please verify your email and password";
-              break;
-            case "auth/user-not-found":
-              errorMessage = "User with this email doesn't exist.";
-              break;
-            case "auth/user-disabled":
-              errorMessage = "User with this email has been disabled.";
-              break;
-            case "auth/too-many-requests":
-              errorMessage = "Too many requests. Try again later.";
-              break;
-            case "auth/operation-not-allowed":
-              errorMessage = "Signing in with Email and Password is not enabled.";
-              break;
-            default:
-              errorMessage = error.code;
-          }
-        });
+        print("ERROR AHHHHH: "+error.toString());
+        handleErrorCodeState(error);
         return Future.error(error);
       });
     }
 
   }
 
-  Future<dynamic> _getToken(AuthResult user){
-    return FirebaseAuth.instance.currentUser().then((user){
-      user.getIdToken().then((value) {
-        print("GOt token: "+value.token);
-        PHCRUser.User.user.firebaseToken = value.token;
-        return APIUtility.getUser().then((value){
-          Future.delayed(Duration(seconds: 2), (){
-            navigateToHomePage();
-          });
-          return Future.value(value);
-        });
-      })
-          .catchError((err){
-        FirebaseAuth.instance.signOut();
-        print("FAILED TO GET ID TOKEN. SO LOGGED OUT");
-        return Future.error("Failed to get Firebase ID Token.");
-      });
-
-    }).catchError((err){
-      FirebaseAuth.instance.signOut();
-      print("FAILED TO GET CURRENT USER. SO LOGGED OUT");
-      return Future.error("Failed to get Firebase ID Token.");
+  ///Sets the correct errorMessage on the screen for the given error
+  void handleErrorCodeState(error){
+    setState(() {
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Please verify your email and password";
+          break;
+        case "auth/user-not-found":
+          errorMessage = "Please verify your email and password";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "User with this email has been disabled.";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many requests. Try again later.";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage = "Signing in with Email and Password is not enabled.";
+          break;
+        default:
+          errorMessage = error.toString();
+      }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {

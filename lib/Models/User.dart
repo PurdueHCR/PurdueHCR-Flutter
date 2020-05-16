@@ -11,9 +11,6 @@ class User {
   static const String LAST_SEMESTER_POINTS = "LastSemesterPoints";
   static const String TOTAL_POINTS = "TotalPoints";
 
-  static const String API_HOUSE_RANK = "houseRank";
-  static const String API_SEMESTER_RANK = "semesterRank";
-
 
   String firebaseToken = "";
   String firstName = "";
@@ -24,8 +21,7 @@ class User {
   num totalPoints = -1;
   UserPermissionLevel permissionLevel = UserPermissionLevel.RESIDENT;
   String id = "";
-  num houseRank = -1;
-  num semesterRank = -1;
+
 
   static User user = new User();
 
@@ -40,12 +36,11 @@ class User {
     permissionLevel = UserPermissionLevelConverter.fromNum(data[PERMISSION_LEVEL]);
   }
 
-  void setHouseRankingsFromJson(Map<String, dynamic> data){
-    houseRank = data[API_HOUSE_RANK];
-    semesterRank = data[API_SEMESTER_RANK];
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "NAME: "+firstName+" "+lastName+" totalPoints: "+totalPoints.toString();
   }
-
-
 
 
 

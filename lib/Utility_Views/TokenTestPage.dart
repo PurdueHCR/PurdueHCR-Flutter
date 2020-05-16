@@ -2,7 +2,7 @@ import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:purduehcr_web/User_Login_Creation/LogInPage.dart';
+import 'package:purduehcr_web/Login/LogInPage.dart';
 
 
 class TokenTestPage extends StatefulWidget {
