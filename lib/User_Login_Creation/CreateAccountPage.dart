@@ -13,7 +13,7 @@ class CreateAccountPage extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.22,
             height: MediaQuery.of(context).size.height * 0.4,
-            child: CreateAccountCard(),
+            child: Text("Unimplemented"),
           ),
         )
     );

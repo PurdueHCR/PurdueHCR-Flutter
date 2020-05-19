@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
+import 'package:purduehcr_web/Utilities/APIUtility.dart';
 
 import '../../Utilities/user_repository.dart';
 import 'authentication.dart';
@@ -28,7 +29,8 @@ class AuthenticationBloc
       if (hasToken) {
         try{
           final token = await userRepository.getCachedToken();
-          yield AuthenticationAuthenticated(token);
+          final user = await userRepository.getUser(token);
+          yield AuthenticationAuthenticated(token, user);
         }
         catch(error){
           debugPrint("ERROR: "+error);
@@ -41,8 +43,8 @@ class AuthenticationBloc
 
     if (event is LoggedIn) {
       yield AuthenticationLoading();
-      await userRepository.persistToken(event.token);
-      yield AuthenticationAuthenticated(event.token);
+      final user = await userRepository.getUser(event.token);
+      yield AuthenticationAuthenticated(event.token, user);
     }
 
     if (event is LoggedOut) {

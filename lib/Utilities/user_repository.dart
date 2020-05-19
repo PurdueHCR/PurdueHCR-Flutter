@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:purduehcr_web/Models/User.dart';
 import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
+
+import 'HttpUtility.dart';
 
 class UserRepository {
 
@@ -43,6 +46,13 @@ class UserRepository {
   Future<void> _deleteToken() {
     //TODO IMPLEMENT TOKEN CACHING
     return Future.delayed(Duration(seconds: 1));
+  }
+
+  Future<User> getUser(String token){
+    return Network.get("user/get", token).then((userMap){
+      return Future.value(User.fromJson(userMap));
+    });
+
   }
 
 }

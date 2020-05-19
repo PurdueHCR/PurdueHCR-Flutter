@@ -8,7 +8,7 @@ import 'package:purduehcr_web/BLoCs/authentication/authentication.dart';
 
 
 void main(){
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  //BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(PurdueHCR());
 }
 

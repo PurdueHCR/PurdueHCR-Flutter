@@ -9,50 +9,53 @@ import '../Models/User.dart';
 
 class Network {
 
-  static Future<dynamic> get(String path, {Map<String, dynamic> params}) async {
+  //static String domain = "https://us-central1-purdue-hcr-test.cloudfunctions.net/";
+  static String domain = "http://localhost:5001/purdue-hcr-test/us-central1/";
+
+  static Future<dynamic> get(String path, String token, {Map<String, dynamic> params}) async {
     path = path + _serializeParams(params);
-    print("TESTING GET call to : "+path+" and token: "+User.user.firebaseToken);
-    Map<String,String> headers = {"Authorization": "Bearer "+User.user.firebaseToken};
-    final response = await http.get(path,headers: headers);
+    print("TESTING GET call to : "+path+" and token: "+token);
+    Map<String,String> headers = {"Authorization": "Bearer "+token};
+    final response = await http.get(domain + path,headers: headers);
     if(response.statusCode == 200 ){
-      return json.decode(response.body);
+      return Future.value(json.decode(response.body));
     }else{
-      throw(HttpError(response.statusCode, response.body));
+      return Future.error( HttpError(response.statusCode, response.body) );
     }
   }
 
-  static Future<Map<String,dynamic>> post(String path, {Map<String,dynamic> body, Map<String, dynamic> params}) async {
+  static Future<Map<String,dynamic>> post(String path, String token, {Map<String,dynamic> body, Map<String, dynamic> params}) async {
     path = path + _serializeParams(params);
-    Map<String,String> headers = {"Authorization": "Bearer "+User.user.firebaseToken};
+    Map<String,String> headers = {"Authorization": "Bearer "+token};
     print("HEADERS: "+headers.toString());
     print("BODY: "+body.toString());
-    final response = await http.post(path,headers: headers, body: body);
+    final response = await http.post(domain + path,headers: headers, body: body);
     if(isSuccessCode(response.statusCode)){
       print("GOT JSON: "+response.body.toString() );
       return Future.value(json.decode(response.body));
     }else{
       print("GOT ERROR: "+response.statusCode.toString() +": "+response.body.toString());
-      return Future.error(HttpError(response.statusCode, json.decode(response.body)));
+      return Future.error( HttpError(response.statusCode, json.decode(response.body)) );
     }
   }
 
-  static Future<Map<String,dynamic>> delete(String path) async {
-    Map<String,String> headers = {"Authorization": "Bearer "+User.user.firebaseToken};
-    final response = await http.delete(path,headers: headers);
+  static Future<Map<String,dynamic>> delete(String path, String token) async {
+    Map<String,String> headers = {"Authorization": "Bearer "+token};
+    final response = await http.delete(domain + path,headers: headers);
     if(isSuccessCode(response.statusCode)){
-      return json.decode(response.body);
+      return Future.value( json.decode(response.body) );
     }else{
-      throw new HttpError(response.statusCode, json.decode(response.body));
+      return Future.error( HttpError(response.statusCode, response.body) );
     }
   }
 
-  static Future<Map<String,dynamic>> put(String path, Map<String,String> headers) async {
-    Map<String,String> headers = {"Authorization": "Bearer "+User.user.firebaseToken};
-    final response = await http.put(path,headers: headers);
+  static Future<Map<String,dynamic>> put(String path, String token, Map<String,String> headers) async {
+    Map<String,String> headers = {"Authorization": "Bearer "+token};
+    final response = await http.put(domain + path,headers: headers);
     if(isSuccessCode(response.statusCode)){
-      return json.decode(response.body);
+      return Future.value(json.decode(response.body));
     }else{
-      throw new HttpError(response.statusCode, json.decode(response.body));
+      return Future.error( HttpError(response.statusCode, response.body) );
     }
   }
 

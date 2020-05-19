@@ -32,17 +32,17 @@ class LogInPageState extends State<LogInPage> {
   @override
   void initState() {
     _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     _loginBloc = LoginBloc(
       context: context,
       network: _userRepository,
       authenticationBloc: _authenticationBloc,
     );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     final bool isDesktop = isDisplayDesktop(context);
 
     return Scaffold(
@@ -194,6 +194,6 @@ class LogInPageState extends State<LogInPage> {
   @override
   void dispose() {
     super.dispose();
-    //_loginBloc.close();
+    _loginBloc.close();
   }
 }
