@@ -14,7 +14,6 @@ class Network {
 
   static Future<dynamic> get(String path, String token, {Map<String, dynamic> params}) async {
     path = path + _serializeParams(params);
-    print("TESTING GET call to : "+path+" and token: "+token);
     Map<String,String> headers = {"Authorization": "Bearer "+token};
     final response = await http.get(domain + path,headers: headers);
     if(response.statusCode == 200 ){
@@ -27,8 +26,6 @@ class Network {
   static Future<Map<String,dynamic>> post(String path, String token, {Map<String,dynamic> body, Map<String, dynamic> params}) async {
     path = path + _serializeParams(params);
     Map<String,String> headers = {"Authorization": "Bearer "+token};
-    print("HEADERS: "+headers.toString());
-    print("BODY: "+body.toString());
     final response = await http.post(domain + path,headers: headers, body: body);
     if(isSuccessCode(response.statusCode)){
       print("GOT JSON: "+response.body.toString() );

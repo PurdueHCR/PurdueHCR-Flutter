@@ -93,7 +93,8 @@ class PhcrDrawer extends Drawer {
                       selectedList[index - 1].name
                   ),
                   onTap: () {
-                    Navigator.of(context).pushNamed(selectedList[index - 1].path);
+                    if(!(selectedPageName == selectedList[index - 1].name))
+                      Navigator.of(context).pushReplacementNamed(selectedList[index - 1].path);
                   },
                 );
               }

@@ -1,70 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purduehcr_web/BLoCs/authentication/authentication_bloc.dart';
-import 'package:purduehcr_web/BLoCs/authentication/authentication_state.dart';
-import 'package:purduehcr_web/Utilities/DisplayTypeUtil.dart';
+import 'package:purduehcr_web/BasePage.dart';
 
 
-import 'PhcrDrawer.dart';
-
-
-class TokenTestPage extends StatefulWidget {
+class TokenTestPage extends BasePage {
   TokenTestPage({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return TokenTestPageState();
   }
 
 }
 
-class TokenTestPageState extends State<TokenTestPage> {
-  AuthenticationAuthenticated auth;
+class TokenTestPageState extends BasePageState {
 
   @override
-  void initState() {
-    super.initState();
-    auth = BlocProvider.of<AuthenticationBloc>(context).state;
+  Widget buildDesktopBody() {
+    return _buildBody();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final bool isDesktop = isDisplayDesktop(context);
-
-    if(isDesktop) {
-      return Scaffold(
-          body: Row(
-            children: [
-              PhcrDrawer("Token"),
-              Expanded(
-                child: Column(
-                  children: [
-                    AppBar(
-                      title: Text("Purdue HCR"),
-                    ),
-                    Expanded(
-                      child: _buildBody(),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )
-      );
-    }
-    else{
-      return Scaffold(
-          appBar: AppBar(
-            title: Text("Purdue HCR"),
-          ),
-          drawer: PhcrDrawer("Token"),
-          body: _buildBody()
-      );
-    }
-
-
+  Widget buildMobileBody() {
+    return _buildBody();
   }
 
   Widget _buildBody() {
@@ -94,5 +52,6 @@ class TokenTestPageState extends State<TokenTestPage> {
       ),
     );
   }
+
 
 }

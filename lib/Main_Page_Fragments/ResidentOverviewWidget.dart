@@ -28,10 +28,10 @@ class _ResidentOverviewState extends State<ResidentOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: SizedBox(
-          height: 150,
-          width: 250,
+    return SizedBox(
+        height: 150,
+        width: 250,
+        child: Card(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
