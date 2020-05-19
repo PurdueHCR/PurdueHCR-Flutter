@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purduehcr_web/BLoCs/overview/overview.dart';
 import 'package:purduehcr_web/BasePage.dart';
-import 'package:purduehcr_web/Main_Page_Fragments/ResidentOverviewWidget.dart';
+import 'package:purduehcr_web/OverviewPage/ResidentOverviewWidget.dart';
 import 'package:purduehcr_web/Utility_Views/LoadingWidget.dart';
+
+import 'overview_bloc/overview.dart';
 
 
 class HomePage extends BasePage {
@@ -11,13 +12,15 @@ class HomePage extends BasePage {
 
   @override
   State<StatefulWidget> createState() {
-    return HomePageState();
+    return HomePageState(drawerLabel: "Overview");
   }
 }
 
 class HomePageState extends BasePageState {
 
   OverviewBloc _overviewBloc;
+
+  HomePageState({@required String drawerLabel}):super(drawerLabel:drawerLabel);
 
   @override
   void initState() {

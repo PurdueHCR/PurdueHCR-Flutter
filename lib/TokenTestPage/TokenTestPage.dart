@@ -8,12 +8,14 @@ class TokenTestPage extends BasePage {
 
   @override
   State<StatefulWidget> createState() {
-    return TokenTestPageState();
+    return TokenTestPageState(drawerLabel: "Token");
   }
 
 }
 
 class TokenTestPageState extends BasePageState {
+
+  TokenTestPageState({@required String drawerLabel}):super(drawerLabel:drawerLabel);
 
   @override
   Widget buildDesktopBody() {

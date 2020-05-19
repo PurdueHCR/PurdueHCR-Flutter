@@ -12,6 +12,10 @@ abstract class BasePage extends StatefulWidget {
 
 abstract class BasePageState extends State<BasePage> {
   AuthenticationAuthenticated auth;
+  final String drawerLabel;
+
+  BasePageState({@required this.drawerLabel}):assert(drawerLabel != null);
+
   @override
   void initState() {
     auth = BlocProvider.of<AuthenticationBloc>(context).state;
@@ -26,12 +30,13 @@ abstract class BasePageState extends State<BasePage> {
       return Scaffold(
           body: Row(
             children: [
-              PhcrDrawer("Overview"),
+              PhcrDrawer(this.drawerLabel),
               Expanded(
                 child: Column(
                   children: [
                     AppBar(
                       title: Text("Purdue HCR"),
+                      automaticallyImplyLeading: false,
                     ),
                     Expanded(
                       child: buildDesktopBody(),
@@ -47,8 +52,9 @@ abstract class BasePageState extends State<BasePage> {
       return Scaffold(
           appBar: AppBar(
             title: Text("Purdue HCR"),
+            automaticallyImplyLeading: false,
           ),
-          drawer: PhcrDrawer("Overview"),
+          drawer: PhcrDrawer(this.drawerLabel),
           body: buildMobileBody()
       );
     }

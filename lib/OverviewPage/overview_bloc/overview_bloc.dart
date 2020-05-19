@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:purduehcr_web/Utilities/overview_repository.dart';
+import 'package:purduehcr_web/OverviewPage/overview_bloc/overview_repository.dart';
 import 'overview.dart';
 class OverviewBloc extends Bloc<OverviewEvent, OverviewState>{
   OverviewRepository overviewRepository = new OverviewRepository();

@@ -2,11 +2,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-abstract class LoginEvent extends Equatable {
-  const LoginEvent();
+abstract class ULCEvent extends Equatable {
+  const ULCEvent();
 }
 
-class Login extends LoginEvent {
+class Login extends ULCEvent {
 
   final String email;
   final String password;
@@ -19,6 +19,6 @@ class Login extends LoginEvent {
 
   @override
   String toString() =>
-      'LoginButtonPressed { username: $email, password: $password }';
+      'ULCButtonPressed { username: $email, password: $password }';
 
 }

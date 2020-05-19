@@ -1,31 +1,31 @@
 import 'package:equatable/equatable.dart';
 
-abstract class LoginState extends Equatable{
-  const LoginState();
+abstract class ULCState extends Equatable{
+  const ULCState();
 }
 
-class LoginInitial extends LoginState {
-  const LoginInitial();
+class ULCInitial extends ULCState {
+  const ULCInitial();
   @override
   List<Object> get props => [];
 }
 
-class LoginLoading extends LoginState {
-  const LoginLoading();
+class ULCLoading extends ULCState {
+  const ULCLoading();
   @override
   List<Object> get props => [];
 }
 
-class LoginSuccess extends LoginState {
+class LoginSuccess extends ULCState {
   final String firebaseToken;
   const LoginSuccess(this.firebaseToken);
   @override
   List<Object> get props => [firebaseToken];
 }
 
-class LoginError extends LoginState {
+class ULCError extends ULCState {
   final String message;
-  const LoginError(this.message);
+  const ULCError(this.message);
   @override
   List<Object> get props => [message];
 }

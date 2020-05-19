@@ -1,27 +1,26 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/Utilities/user_repository.dart';
 
 import 'package:purduehcr_web/BLoCs/authentication/authentication.dart';
-import './login.dart';
+import './ulc.dart';
 
 
-class LoginBloc extends Bloc<LoginEvent, LoginState>{
+class ULCBloc extends Bloc<ULCEvent, ULCState>{
   final UserRepository network;
   final BuildContext context;
   final AuthenticationBloc authenticationBloc;
-  LoginBloc({ @required this.context, @required this.network, @required this.authenticationBloc})  : assert(network != null),
+  ULCBloc({ @required this.context, @required this.network, @required this.authenticationBloc})  : assert(network != null),
         assert(authenticationBloc != null);
 
   @override
-  LoginState get initialState => LoginInitial();
+  ULCState get initialState => ULCInitial();
 
   @override
-  Stream<LoginState> mapEventToState( LoginEvent event) async* {
+  Stream<ULCState> mapEventToState( ULCEvent event) async* {
     print("Calling Map");
     if(event is Login) {
-      yield LoginLoading();
+      yield ULCLoading();
       try {
         final token = await network.loginUser(
             context, event.email, event.password);
@@ -30,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
         yield LoginSuccess(token);
       }
       catch (error) {
-        yield LoginError(error);
+        yield ULCError(error);
       }
     }
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:purduehcr_web/HomePage.dart';
+import 'package:purduehcr_web/OverviewPage/OverviewPage.dart';
 import 'package:purduehcr_web/User_Login_Creation/JoinHousePage.dart';
-import 'package:purduehcr_web/Login/LogInPage.dart';
+import 'package:purduehcr_web/User_Login_Creation/LogInPage.dart';
 
 class JoinHouseCard extends StatefulWidget{
   JoinHouseCard({Key key}) : super(key: key);

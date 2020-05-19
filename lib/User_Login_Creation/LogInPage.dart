@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purduehcr_web/BLoCs/login/login.dart';
 import 'package:purduehcr_web/Utilities/DisplayTypeUtil.dart';
-import 'package:purduehcr_web/Utilities/user_repository.dart';
 import 'package:purduehcr_web/BLoCs/authentication/authentication.dart';
+import 'user_login_creation_bloc/ulc.dart';
 
 
 
@@ -21,7 +20,7 @@ class LogInPage extends StatefulWidget {
 
 }
 class LogInPageState extends State<LogInPage> {
-  LoginBloc _loginBloc;
+  ULCBloc _loginBloc;
 
   //Ignore close sink because it will be closed elsewhere
   // ignore: close_sinks
@@ -32,7 +31,7 @@ class LogInPageState extends State<LogInPage> {
   @override
   void initState() {
     _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
-    _loginBloc = LoginBloc(
+    _loginBloc = ULCBloc(
       context: context,
       network: _userRepository,
       authenticationBloc: _authenticationBloc,
@@ -50,7 +49,7 @@ class LogInPageState extends State<LogInPage> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 16),
         alignment: Alignment.center,
-        child: BlocBuilder<LoginBloc, LoginState>(
+        child: BlocBuilder<ULCBloc, ULCState>(
           bloc: _loginBloc,
           builder: (context, state) {
             if(isDesktop){
@@ -65,12 +64,12 @@ class LogInPageState extends State<LogInPage> {
     );
   }
 
-  Widget _createDesktop(LoginState state){
+  Widget _createDesktop(ULCState state){
     Widget child;
-    if(state is LoginLoading){
+    if(state is ULCLoading){
       child = _createLoadingCard();
     }
-    else if(state is LoginError){
+    else if(state is ULCError){
       child = _createLoginCard(error: state.message);
     }
     else {
@@ -85,7 +84,7 @@ class LogInPageState extends State<LogInPage> {
     );
   }
 
-  Widget _createMobile(LoginState state){
+  Widget _createMobile(ULCState state){
     return _createDesktop(state);
   }
 

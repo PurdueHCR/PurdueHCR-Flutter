@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purduehcr_web/HomePage.dart';
-import 'package:purduehcr_web/Login/LogInPage.dart';
-import 'package:purduehcr_web/Utility_Views/TokenTestPage.dart';
+import 'package:purduehcr_web/OverviewPage/OverviewPage.dart';
+import 'package:purduehcr_web/User_Login_Creation/LogInPage.dart';
+import 'package:purduehcr_web/TokenTestPage/TokenTestPage.dart';
 
 import 'package:purduehcr_web/BLoCs/authentication/authentication.dart';
 

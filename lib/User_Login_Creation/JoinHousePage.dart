@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:purduehcr_web/User_Login_Creation/JoinHouseCard.dart';
-import 'package:purduehcr_web/User_Login_Creation/LogInCard.dart';
 
 
 class JoinHousePage extends StatelessWidget {

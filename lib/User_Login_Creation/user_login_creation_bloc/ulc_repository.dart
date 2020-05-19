@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:purduehcr_web/Models/User.dart';
 import 'package:purduehcr_web/Utilities/FirebaseUtility.dart';
 
-import 'HttpUtility.dart';
+import '../../Utilities/HttpUtility.dart';
 
 class UserRepository {
 
