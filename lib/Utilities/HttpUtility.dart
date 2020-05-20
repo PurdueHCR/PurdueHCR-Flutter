@@ -9,8 +9,8 @@ import '../Models/User.dart';
 
 class Network {
 
-  //static String domain = "https://us-central1-purdue-hcr-test.cloudfunctions.net/";
-  static String domain = "http://localhost:5001/purdue-hcr-test/us-central1/";
+  static String domain = "https://us-central1-purdue-hcr-test.cloudfunctions.net/";
+  //static String domain = "http://localhost:5001/purdue-hcr-test/us-central1/";
 
   static Future<dynamic> get(String path, String token, {Map<String, dynamic> params}) async {
     path = path + _serializeParams(params);
